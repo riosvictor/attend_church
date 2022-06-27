@@ -3,6 +3,8 @@ export const privateKey = '-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0B
 export const attendanceHeaderValues = ['ward', 'month', 'day', 'attendance'];
 export const baptismHeaderValues = ['ward', 'jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez', 'total'];
 export const missionaryHeaderValues = ['ward', 'month', 'quantity', 'updatedAt'];
+export const templeUnityHeaderValues = ['unity', 'total', 'adult', 'young', 'rc', 'jas'];
+export const templeAggregateHeaderValues = ['month', 'total'];
 export const wardCodes = [
   {
     name: 'Campus',

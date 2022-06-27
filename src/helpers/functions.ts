@@ -1,4 +1,4 @@
-import { GoogleSpreadsheet } from "google-spreadsheet";
+import { GoogleSpreadsheet, GoogleSpreadsheetWorksheet } from "google-spreadsheet";
 import { google, sheets_v4 } from "googleapis";
 import path from "path";
 import { Page } from "puppeteer";
@@ -254,6 +254,37 @@ export function convertDateToString(date: Date) {
   const year = date.getFullYear();
 
   return `${day}/${month}/${year}`;
+}
+
+export async function saveInSheets(sheet: GoogleSpreadsheetWorksheet, row: number, values: any) {
+  let throws = true
+
+  while (throws) {
+    try {
+      const rows = await sheet.getRows({
+        offset: row,
+        limit: 1,
+      });
+
+      if (rows.length === 0) {
+        await sheet.addRow(values);
+      }
+
+      if (rows.length > 0) {
+        Object.entries(values).forEach(([key, value]) => {
+          if (value !== rows[0][key]) {
+            rows[0][key] = value;
+          }
+        });
+
+        await rows[0].save();
+      }
+
+      throws = false;
+    } catch (error) {
+      throws = true;
+    }
+  }
 }
 
 
