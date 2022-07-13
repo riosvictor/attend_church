@@ -2,6 +2,7 @@ import { GoogleSpreadsheet, GoogleSpreadsheetWorksheet } from "google-spreadshee
 import { google, sheets_v4 } from "googleapis";
 import path from "path";
 import { Page } from "puppeteer";
+import { clientEmail, privateKey } from "./constants";
 
 export async function waitLoadURL(page: Page, url: string) {
   let actualUrl = await page.url();
@@ -33,7 +34,10 @@ export function inMonthInterval(date: Date, month: number) {
 
 export async function getAuthSheets() {
   const auth = new google.auth.GoogleAuth({
-    keyFile: path.resolve(__dirname, '../../credentials.json'),
+    credentials: {
+      client_email: clientEmail,
+      private_key: privateKey.replace(/\\n/g, '\n')
+    },
     scopes: ['https://www.googleapis.com/auth/spreadsheets'],
   })
 
