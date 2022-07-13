@@ -18,4 +18,6 @@ scheduleJob(rule, () => {
   areaIndicators.start().catch(err => {
     console.log(err);
   });
-}); 
+});
+
+console.info('Jobs are scheduled!');
