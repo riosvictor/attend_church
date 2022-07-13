@@ -20,4 +20,4 @@ scheduleJob(rule, () => {
   });
 });
 
-console.info('Jobs are scheduled!');
+console.log('Jobs are scheduled!');
