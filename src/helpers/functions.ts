@@ -1,6 +1,5 @@
 import { GoogleSpreadsheet, GoogleSpreadsheetWorksheet } from "google-spreadsheet";
 import { google, sheets_v4 } from "googleapis";
-import path from "path";
 import { Page } from "puppeteer";
 import { clientEmail, privateKey } from "./constants";
 
