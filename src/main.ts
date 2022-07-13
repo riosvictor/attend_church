@@ -1,6 +1,7 @@
 import { scheduleJob, RecurrenceRule } from 'node-schedule';
-import areaIndicators from './area_indicators'
-import wardAttendance from './wards_attendance'
+import 'dotenv/config';
+import areaIndicators from './area_indicators';
+import wardAttendance from './wards_attendance';
 
 const rule = new RecurrenceRule();
 
