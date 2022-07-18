@@ -6,7 +6,7 @@ import wardAttendance from './wards_attendance';
 const rule = new RecurrenceRule();
 
 rule.dayOfWeek = [0, 1, 2];
-rule.hour = 22;
+rule.hour = 18;
 rule.minute = 0;
 
 scheduleJob(rule, () => {
