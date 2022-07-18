@@ -9,7 +9,7 @@
     "start": "node dist/main.js",
     "dev": "ts-node-dev src/main.ts"
   },
-  "author": "Paulo RIos",
+  "author": "Paulo Rios",
   "license": "ISC",
   "devDependencies": {
     "@tsconfig/node16": "^1.0.2",
