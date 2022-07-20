@@ -10,15 +10,15 @@ rule.hour = 18;
 rule.minute = 0;
 rule.tz = 'America/Sao_Paulo'
 
-scheduleJob(rule, () => {
+// scheduleJob(rule, () => {
   wardAttendance.start().catch(err => {
     console.log(err);
   });
-});
-scheduleJob(rule, () => {
+// });
+// scheduleJob(rule, () => {
   areaIndicators.start().catch(err => {
     console.log(err);
   });
-});
+// });
 
 console.log('Jobs are scheduled!');
