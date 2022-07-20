@@ -10,19 +10,17 @@ rule.hour = 17;
 rule.minute = 0;
 rule.tz = 'America/Sao_Paulo'
 
-// scheduleJob(rule, () => {
-//   wardAttendance.start().catch(err => {
-//     console.log(err);
-//   });
-// });
-// scheduleJob(rule, () => {
-//   areaIndicators.start().catch(err => {
-//     console.log(err);
-//   });
-// });
-
-// console.log('Jobs are scheduled!');
-
-  wardAttendance.start().catch(err => {
+async function run() {
+  try {
+    await wardAttendance.start()
+    await areaIndicators.start();
+  } catch (err) {
     console.log(err);
-  });
+  }
+}
+
+scheduleJob(rule, () => run());
+
+console.log('Jobs are scheduled!');
+
+run();
