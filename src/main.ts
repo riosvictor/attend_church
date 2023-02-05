@@ -5,7 +5,7 @@ import wardAttendance from './wards_attendance';
 
 const rule = new RecurrenceRule();
 
-rule.dayOfWeek = [0, 1, 2];
+rule.dayOfWeek = [0, 2];
 rule.hour = 16;
 rule.minute = 30;
 rule.tz = 'America/Sao_Paulo'
