@@ -11,7 +11,10 @@ rule.minute = 30;
 rule.tz = 'America/Sao_Paulo'
 
 async function run() {
-  console.log(new Date());
+   const day = new Date().toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' })
+
+   console.log(day);
+
   try {
     await wardAttendance.start()
     await areaIndicators.start();
