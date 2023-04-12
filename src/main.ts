@@ -11,6 +11,7 @@ rule.minute = 30;
 rule.tz = 'America/Sao_Paulo'
 
 async function run() {
+  console.log(new Date());
   try {
     await wardAttendance.start()
     await areaIndicators.start();
