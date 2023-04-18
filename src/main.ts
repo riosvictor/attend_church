@@ -17,7 +17,8 @@ async function run() {
 
   try {
     await wardAttendance.start()
-    await areaIndicators.start();
+    // TODO: alteração no layout da página
+    // await areaIndicators.start();
   } catch (err) {
     console.log(err);
   }

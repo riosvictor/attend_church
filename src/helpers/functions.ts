@@ -3,11 +3,13 @@ import { google, sheets_v4 } from "googleapis";
 import { Page } from "puppeteer";
 
 export async function waitLoadURL(page: Page, url: string) {
-  let actualUrl = await page.url();
+  let actualUrl = page.url();
 
   while (!actualUrl.startsWith(url)) {
     await page.waitForTimeout(1000);
-    actualUrl = await page.url();
+    await page.goto(url, { waitUntil: 'networkidle2' });
+    await page.waitForTimeout(1000);
+    actualUrl = page.url();
   }
 }
 
