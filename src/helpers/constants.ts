@@ -5,20 +5,8 @@ export const templeUnityHeaderValues = ['unity', 'total', 'adult', 'young', 'rc'
 export const templeAggregateHeaderValues = ['month', 'total'];
 export const wardCodes = [
   {
-    name: 'Campus',
-    code: '475548',
-  },
-  {
-    name: 'Castro',
-    code: '331597',
-  },
-  {
     name: 'Dal Col',
     code: '255122',
-  },
-  {
-    name: 'Esplanada',
-    code: '155861',
   },
   {
     name: 'Jardim Florença',
@@ -27,10 +15,6 @@ export const wardCodes = [
   {
     name: 'Paraíso',
     code: '2144034',
-  },
-  {
-    name: 'Ponta Grossa 2',
-    code: '88382',
   },
   {
     name: '31 de Março',

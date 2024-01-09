@@ -2,14 +2,17 @@ import { GoogleSpreadsheet, GoogleSpreadsheetWorksheet } from "google-spreadshee
 import { google, sheets_v4 } from "googleapis";
 import { Page } from "puppeteer";
 
-export async function waitLoadURL(page: Page, url: string) {
+export async function waitLoadURL(page: Page, urls: string[]) {
   let actualUrl = page.url();
+  let urlIndexList = 0
 
-  while (!actualUrl.startsWith(url)) {
+  while (!urls.some((url) => actualUrl.startsWith(url))) {
     await page.waitForTimeout(1000);
-    await page.goto(url, { waitUntil: 'networkidle2' });
+    await page.goto(urls[urlIndexList], { waitUntil: 'networkidle2' });
     await page.waitForTimeout(1000);
     actualUrl = page.url();
+
+    urlIndexList = urlIndexList + 1 === urls.length ? 0 : urlIndexList + 1;
   }
 }
 
