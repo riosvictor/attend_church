@@ -10,6 +10,7 @@ export async function waitLoadURL(page: Page, urls: string[]) {
     await page.waitForTimeout(1000);
     await page.goto(urls[urlIndexList], { waitUntil: 'networkidle2' });
     await page.waitForTimeout(1000);
+    
     actualUrl = page.url();
 
     urlIndexList = urlIndexList + 1 === urls.length ? 0 : urlIndexList + 1;

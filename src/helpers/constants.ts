@@ -25,3 +25,7 @@ export const wardCodes = [
     code: '150681',
   }
 ]
+
+export const homeURLs = ['https://lcr.churchofjesuschrist.org/?lang=por', 'https://www.churchofjesuschrist.org/']
+export const loginURL = 'https://id.churchofjesuschrist.org/oauth2/default/v1/authorize?response_type=code&client_id=0oa5b6krts7UNNkID357&redirect_uri=https%3A%2F%2Fwww.churchofjesuschrist.org%2Fservices%2Fplatform%2Fv4%2Flogin&scope=openid%20profile&state=https%3A%2F%2Fwww.churchofjesuschrist.org%2Fmy-home%3Flang%3Deng'
+export const initURL = 'https://www.churchofjesuschrist.org/'

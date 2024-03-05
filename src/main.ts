@@ -24,8 +24,8 @@ async function run() {
   }
 }
 
-scheduleJob(rule, () => run());
+//scheduleJob(rule, () => run());
 
-console.log('Jobs are scheduled!');
+//console.log('Jobs are scheduled!');
 
 run();
