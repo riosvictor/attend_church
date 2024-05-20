@@ -17,6 +17,27 @@ export async function waitLoadURL(page: Page, urls: string[]) {
   }
 }
 
+export async function waitXPathTimes(page: Page, xpath: string, times: number = 3) {
+  let count = 0;
+
+  while (count < times) {
+    try {
+      await page.waitForXPath(xpath);
+      return; 
+    } catch (error) {
+      const pageName = await page.title()
+      await page.screenshot({ path: `./screenshots/xpath_${pageName}_${count}.png` });
+      await page.reload();
+
+      if (count === times - 1) {
+        throw error;
+      }
+    } finally {
+      count++;
+    }
+  }
+}
+
 export async function prepareSheet(doc: GoogleSpreadsheet, headerValues: string[], sheetTitle: string) {
   const foundedSheet = doc.sheetsByTitle[sheetTitle]
 
