@@ -1,19 +1,29 @@
 import { GoogleSpreadsheet, GoogleSpreadsheetWorksheet } from "google-spreadsheet";
 import { google, sheets_v4 } from "googleapis";
-import { Page } from "puppeteer";
+import puppeteer, { Page } from "puppeteer";
+import { homeURL, loginURL } from "./constants";
 
 export async function waitLoadURL(page: Page, urls: string[]) {
   let actualUrl = page.url();
   let urlIndexList = 0
+  let tryCount = 0;
 
-  while (!urls.some((url) => actualUrl.startsWith(url))) {
+  while (!urls.some((url) => actualUrl.includes(url))) {
+    console.log(`\t> Trying to load URL ${urls[urlIndexList]} - ${tryCount} times`);
+
     await page.waitForTimeout(1000);
     await page.goto(urls[urlIndexList], { waitUntil: 'networkidle2' });
     await page.waitForTimeout(1000);
     
     actualUrl = page.url();
-
     urlIndexList = urlIndexList + 1 === urls.length ? 0 : urlIndexList + 1;
+
+    if (tryCount > 0){
+      const pageName = await page.title()
+      await page.screenshot({ path: `./screenshots/waitload_${pageName}_${tryCount}.png` });
+    }
+
+    tryCount++;
   }
 }
 
@@ -316,6 +326,61 @@ export async function saveInSheets(sheet: GoogleSpreadsheetWorksheet, row: numbe
   }
 }
 
+export async function initSheet(sheetID: string) {
+  const doc = new GoogleSpreadsheet(sheetID);
+
+  await doc.useServiceAccountAuth({
+    client_email: process.env.CLIENT_EMAIL ?? '',
+    private_key: (process.env.PRIVATE_KEY ?? '').replace(/\\n/g, '\n')
+  })
+  await doc.loadInfo();
+
+  return {
+    sheet: doc.sheetsByIndex[0],
+    doc
+  };
+}
+
+export async function goToHomeLcr(page: Page) {
+  console.info('Going to home page...');
+
+  await waitLoadURL(page, [loginURL])
+  await page.waitForSelector('input[type="text"][name="identifier"]');
+
+  await page.type('input[type="text"][name="identifier"]', 'victor.rios');
+  await page.click('input[type="submit"]');
+
+  await page.waitForSelector('input[type="password"][name="credentials.passcode"]');
+  await page.type('input[type="password"][name="credentials.passcode"]', 'ldsamon2018');
+  await page.waitForTimeout(10000); 
+  
+  const loginButton = await page.$('input[type="submit"]');
+
+  
+  if (loginButton) {
+    await loginButton.click({ delay: 100, clickCount: 2 });
+    await page.waitForNetworkIdle();
+  }
+
+  await waitLoadURL(page, [homeURL]);
+  await page.waitForSelector('input[type="search"]');
+}
+
+export async function initPage() {
+  console.info('Initializing page...');
+
+  const browser = await puppeteer.launch({
+    //executablePath: '/usr/bin/google-chrome', // TODO: comentar para rodar local
+    args: [
+      '--no-sandbox'
+    ]
+  });
+
+  const page = await browser.newPage();
+  page.setDefaultNavigationTimeout(120000)
+
+  return { page, browser };
+}
 
 // https://www.youtube.com/watch?v=PxphXQmtHLo
 // https://www.twilio.com/pt-br/docs/sms
