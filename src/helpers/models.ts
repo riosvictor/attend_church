@@ -14,15 +14,6 @@ export type TAttendance = {
   }[];
 }
 
-export type TBaptism = {
-  name: string;
-  age: string;
-  sex: string;
-  date: Date;
-  typeMember: string;
-  ward: string;
-}
-
 export type TMissionary = {
   name?: string;
   mission?: string;
@@ -31,19 +22,13 @@ export type TMissionary = {
   ward?: string;
 }
 
-export type TTemple = {
-  aggregateByMonth: (string)[];
-  unityDetails: {
-      unity: string;
-      total: string;
-      adult: string;
-      young: string;
-      rc: string;
-      jas: string;
-  }[];
+export type TRecommendations = {
+  ward: string;
+  month: number;
+  count: number;
 }
 
-export type TRecommendations = {
+export type TBaptisms = {
   ward: string;
   month: number;
   count: number;

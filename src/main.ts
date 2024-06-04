@@ -16,7 +16,7 @@ async function run() {
    console.log(day);
 
   try {
-    // await wardAttendance.start()
+    await wardAttendance.start()
     await areaIndicators.start();
   } catch (err) {
     console.log(err);

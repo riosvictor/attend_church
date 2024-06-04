@@ -1,9 +1,7 @@
 export const attendanceHeaderValues = ['ward', 'month', 'day', 'attendance'];
-export const baptismHeaderValues = ['ward', 'jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez', 'total'];
+export const baptismHeaderValues = ['ward', 'month', 'count', 'updatedAt'];
 export const missionaryHeaderValues = ['ward', 'month', 'quantity', 'updatedAt'];
 export const recommendationsHeaderValues = ['ward', 'month', 'count', 'updatedAt'];
-export const templeUnityHeaderValues = ['unity', 'total', 'adult', 'young', 'rc', 'jas'];
-export const templeAggregateHeaderValues = ['month', 'total'];
 export const wardCodes = [
   {
     name: 'Dal Col',

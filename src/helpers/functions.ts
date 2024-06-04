@@ -355,11 +355,17 @@ export async function goToHomeLcr(page: Page) {
   await page.waitForTimeout(10000); 
   
   const loginButton = await page.$('input[type="submit"]');
-
   
   if (loginButton) {
     await loginButton.click({ delay: 100, clickCount: 2 });
-    await page.waitForNetworkIdle();
+    try {
+      await page.waitForNetworkIdle({
+        idleTime: 5000,
+        timeout: 10000
+      });
+    } catch (error) {
+      console.error('Error on wait for network idle');
+    }
   }
 
   await waitLoadURL(page, [homeURL]);
