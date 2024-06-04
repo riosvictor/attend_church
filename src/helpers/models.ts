@@ -24,11 +24,11 @@ export type TBaptism = {
 }
 
 export type TMissionary = {
-  name: string;
-  mission: string;
-  begin: Date;
-  end: Date;
-  ward: string;
+  name?: string;
+  mission?: string;
+  begin?: Date;
+  end?: Date;
+  ward?: string;
 }
 
 export type TTemple = {
