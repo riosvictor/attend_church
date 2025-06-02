@@ -157,19 +157,6 @@ npm run build
 npm start
 ```
 
-### Execução única (sem agendamento)
-
-A aplicação está configurada para executar imediatamente. Para ativar o agendamento automático, edite o arquivo `src/main.ts` e descomente as linhas:
-
-```typescript
-// Descomente estas linhas para ativar agendamento (toda terça às 16:30)
-scheduleJob(rule, () => run());
-console.log('Jobs are scheduled!');
-
-// Comente esta linha para desativar execução imediata
-// run();
-```
-
 ## 📊 Estrutura dos Dados Coletados
 
 ### Indicadores da Área
@@ -205,23 +192,6 @@ A aplicação implementa uma lógica inteligente de atualização:
 - **Novos dados**: Se não existe registro para o mês/ala, adiciona novo registro
 - **Dados existentes**: Se o valor coletado for maior que o existente, atualiza
 - **Preservação**: Não sobrescreve dados com valores menores (evita perda de dados)
-
-## 🕐 Agendamento
-
-Por padrão, o agendamento está configurado para:
-- **Dia**: Terça-feira
-- **Horário**: 16:30
-- **Fuso horário**: America/Sao_Paulo
-
-Para modificar, edite as variáveis em `src/main.ts`:
-
-```typescript
-const rule = new RecurrenceRule();
-rule.dayOfWeek = [2];  // 0=domingo, 1=segunda, 2=terça...
-rule.hour = 16;        // Hora (0-23)
-rule.minute = 30;      // Minuto (0-59)
-rule.tz = 'America/Sao_Paulo';
-```
 
 ## 🔒 Segurança
 
@@ -308,14 +278,6 @@ Para adicionar uma nova ala:
    ]'
    ```
 3. **Reinicie a aplicação**
-
-## 🤝 Contribuição
-
-1. Fork o projeto
-2. Crie uma branch para sua feature (`git checkout -b feature/nova-funcionalidade`)
-3. Commit suas mudanças (`git commit -am 'Adiciona nova funcionalidade'`)
-4. Push para a branch (`git push origin feature/nova-funcionalidade`)
-5. Abra um Pull Request
 
 ## 📄 Licença
 

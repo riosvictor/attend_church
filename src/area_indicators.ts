@@ -24,6 +24,7 @@ let sheet: GoogleSpreadsheetWorksheet;
 async function goToBaptismPage(page: Page): Promise<TBaptisms[]> {
   console.info("Going to baptism page...");
 
+  // relatório customizado de batismos, pegando o total de batismos por unidade
   const baptismPage =
     "https://lcr.churchofjesuschrist.org/report/custom-reports-details/6f6a7787-e5b1-4f9c-9784-518826dc3da5";
 
@@ -104,6 +105,7 @@ async function goToRecommendationsTemple(
 ): Promise<TRecommendations[]> {
   console.info("Going to recommendations temple page...");
 
+  // relatório customizado de recomendações do templo, pegando o total de recomendações por unidade
   const recommendationsPage =
     "https://lcr.churchofjesuschrist.org/report/custom-reports-details/92b2a18b-edb4-4aef-a7b2-36ca781c9c01";
 
