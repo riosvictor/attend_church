@@ -4,3 +4,4 @@ dist
 credentials.json
 .env
 screenshots/
+.qodo

@@ -347,11 +347,11 @@ export async function goToHomeLcr(page: Page) {
   await waitLoadURL(page, [loginURL])
   await page.waitForSelector('input[type="text"][name="identifier"]');
 
-  await page.type('input[type="text"][name="identifier"]', 'victor.rios');
+  await page.type('input[type="text"][name="identifier"]', process.env.LCR_LOGIN ?? '');
   await page.click('input[type="submit"]');
 
   await page.waitForSelector('input[type="password"][name="credentials.passcode"]');
-  await page.type('input[type="password"][name="credentials.passcode"]', 'ldsamon2018');
+  await page.type('input[type="password"][name="credentials.passcode"]', process.env.LCR_PASSWORD ?? '');
   await page.waitForTimeout(10000); 
   
   const loginButton = await page.$('input[type="submit"]');
@@ -376,7 +376,8 @@ export async function initPage() {
   console.info('Initializing page...');
 
   const browser = await puppeteer.launch({
-    //executablePath: '/usr/bin/google-chrome', // TODO: comentar para rodar local
+    // TODO: > comentar para rodar local
+    // executablePath: '/usr/bin/google-chrome', 
     args: [
       '--no-sandbox'
     ]

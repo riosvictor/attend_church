@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsup src --format esm",
     "start": "node dist/main.mjs",
-    "dev": "tsx watch --env-file .env src/main.ts"
+    "dev": "npm run clear:screenshots && tsx watch --env-file .env src/main.ts",
+    "clear:screenshots": "rm -rf screenshots/* 2>/dev/null || echo 'No screenshots to clear'"
   },
   "author": "Paulo Rios",
   "license": "ISC",
